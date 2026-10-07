@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>護理系戶外大滿貫活動網</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nursing: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            pink: '#f472b6',
+                            pinklight: '#fce7f3',
+                            mint: '#a7f3d0',
+                            softteal: '#0d9488'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Microsoft JhengHei', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS Animations -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-nursing-300 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-sky-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center text-white shadow-md shadow-sky-200">
+                        <i class="fa-solid font-bold fa-heart-pulse text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-wide text-slate-800 block leading-none">Nursing<span class="text-sky-500">Outdoors</span></span>
+                        <span class="text-xs font-medium text-pink-500">護理系戶外迎新與舒壓之旅</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu Links -->
+                <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                    <a href="#overview" class="hover:text-sky-500 transition-colors py-2"><i class="fa-solid fa-compass mr-1 text-sky-400"></i>活動簡介</a>
+                    <a href="#voting" class="hover:text-sky-500 transition-colors py-2"><i class="fa-solid fa-vote-yea mr-1 text-pink-400"></i>場地投票</a>
+                    <a href="#venues" class="hover:text-sky-500 transition-colors py-2"><i class="fa-solid fa-map-location-dot mr-1 text-emerald-400"></i>場地介紹</a>
+                    <a href="#activities" class="hover:text-sky-500 transition-colors py-2"><i class="fa-solid fa-dice-d20 mr-1 text-amber-400"></i>趣味活動</a>
+                    <a href="#register" class="hover:text-sky-500 transition-colors py-2"><i class="fa-solid fa-pen-to-square mr-1 text-indigo-400"></i>個人報名</a>
+                    <a href="#faq" class="hover:text-sky-500 transition-colors py-2"><i class="fa-solid fa-kit-medical mr-1 text-rose-400"></i>Q&A與叮嚀</a>
+                </div>
+
+                <!-- Registration CTA Button -->
+                <div class="hidden md:block">
+                    <a href="#register" class="bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-500 hover:to-sky-600 text-white font-bold py-2.5 px-5 rounded-full shadow-md shadow-sky-200 hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i>立即報名
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-sky-500 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Nav Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-slate-100 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#overview" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-sky-50 hover:text-sky-500"><i class="fa-solid fa-compass w-6 text-sky-400"></i>活動簡介</a>
+            <a href="#voting" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-sky-50 hover:text-sky-500"><i class="fa-solid fa-vote-yea w-6 text-pink-400"></i>場地投票</a>
+            <a href="#venues" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-sky-50 hover:text-sky-500"><i class="fa-solid fa-map-location-dot w-6 text-emerald-400"></i>場地介紹</a>
+            <a href="#activities" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-sky-50 hover:text-sky-500"><i class="fa-solid fa-dice-d20 w-6 text-amber-400"></i>趣味活動</a>
+            <a href="#register" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-sky-50 hover:text-sky-500"><i class="fa-solid fa-pen-to-square w-6 text-indigo-400"></i>個人報名</a>
+            <a href="#faq" class="mobile-link block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-sky-50 hover:text-sky-500"><i class="fa-solid fa-kit-medical w-6 text-rose-400"></i>Q&A與叮嚀</a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner Section -->
+    <header class="relative pt-28 pb-20 md:pt-36 md:pb-32 overflow-hidden bg-gradient-to-b from-sky-100/70 via-pink-50/40 to-slate-50">
+        <!-- Floating Decorative Element Backgrounds -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-pink-200/40 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Banner Content -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-white/90 px-4 py-2 rounded-full border border-sky-200 shadow-sm text-sky-600 text-xs sm:text-sm font-semibold animate-bounce">
+                        <i class="fa-solid fa-sparkles text-pink-400"></i>
+                        <span>護理系專屬大團聚・暫別國考實習壓力！</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-800 tracking-tight leading-tight">
+                        注入活力 <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 via-pink-400 to-emerald-400">心跳升溫！</span><br>
+                        護理系戶外大滿貫日
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        親愛的護理人們！遠離白班夜班實習、蓋不完的照護計畫與技術考。這次我們將走進大自然，透過有趣的醫護專屬遊戲、歡樂烤肉營火與戶外冒險，重新拉近心與心的距離！
+                    </p>
+
+                    <!-- Stat / Key Highlights badges -->
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-4 text-xs sm:text-sm font-medium text-slate-700">
+                        <div class="flex items-center bg-white/80 px-3.5 py-2 rounded-xl shadow-sm border border-slate-100">
+                            <i class="fa-solid fa-users text-sky-500 text-base mr-2"></i>
+                            <span>跨年級交流互動</span>
+                        </div>
+                        <div class="flex items-center bg-white/80 px-3.5 py-2 rounded-xl shadow-sm border border-slate-100">
+                            <i class="fa-solid fa-prescription-bottle-medical text-pink-400 text-base mr-2"></i>
+                            <span>護理特色遊戲</span>
+                        </div>
+                        <div class="flex items-center bg-white/80 px-3.5 py-2 rounded-xl shadow-sm border border-slate-100">
+                            <i class="fa-solid fa-tree text-emerald-500 text-base mr-2"></i>
+                            <span>戶外療癒放鬆</span>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#voting" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-sky-400 via-sky-500 to-indigo-500 text-white font-bold rounded-2xl shadow-lg shadow-sky-200 hover:shadow-sky-300 hover:scale-105 transition-all text-center">
+                            <i class="fa-solid fa-check-to-slot mr-2"></i>參與場地投票
+                        </a>
+                        <a href="#activities" class="w-full sm:w-auto px-8 py-3.5 bg-white text-slate-700 font-bold rounded-2xl shadow-sm border border-slate-200 hover:bg-slate-50 hover:text-sky-500 transition-all text-center">
+                            <i class="fa-solid fa-gamepad mr-2"></i>探索特色行程
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Banner Image / Cards Composition -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Main Card Graphics -->
+                        <div class="relative z-10 bg-white rounded-3xl p-4 shadow-2xl border border-sky-100 transform hover:rotate-1 transition-transform duration-500">
+                            <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80" alt="Outdoor Camp" class="rounded-2xl w-full h-64 object-cover">
+                            <div class="p-4 space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-bold px-2.5 py-1 bg-pink-100 text-pink-600 rounded-full">系學會年度盛事</span>
+                                    <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i>2026 秋季預定</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-800">讓護理靈魂在蔚藍晴空下伸展</h3>
+                                <p class="text-xs text-slate-500">備有補給站、專業急救包防護，玩得開心、更要安全無憂！</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 1 -->
+                        <div class="absolute -top-6 -left-6 z-20 bg-white p-3.5 rounded-2xl shadow-lg border border-pink-100 flex items-center space-x-3 animate-float">
+                            <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-500 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-heartPulse text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-800">紓壓滿分</p>
+                                <p class="text-[10px] text-slate-400"> Vital Signs Normal </p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 2 -->
+                        <div class="absolute -bottom-6 -right-6 z-20 bg-white p-3.5 rounded-2xl shadow-lg border border-sky-100 flex items-center space-x-3 animate-float" style="animation-delay: 2s;">
+                            <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-500 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-campground text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-800">候選場地 熱烈投票中</p>
+                                <p class="text-[10px] text-slate-400">目前累計 <span id="hero-vote-count" class="font-bold text-sky-500">248</span> 票</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 2: Event Overview -->
+    <section id="overview" class="py-16 md:py-24 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-sky-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-stethoscope mr-1"></i> About Event</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 sm:text-4xl">活動宗旨與預定規劃</h2>
+                <p class="text-slate-500 text-sm sm:text-base">專為護理系同學量身打造，給日常充斥臨床實習與繁重課業的你，最棒的充電解毒劑！</p>
+            </div>
+
+            <!-- Grid overview cards -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-500 text-xl font-bold mb-4">
+                        <i class="fa-solid fa-calendar-day"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">預定舉辦時間</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">預計於十月中旬週末舉辦（一日遊或兩天一夜，將視最終選出場地彈性調整）。</p>
+                    <ul class="space-y-2 text-xs text-slate-500 border-t border-slate-200 pt-3">
+                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i>避開期中考與大四實習交接期</li>
+                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i>專車定點接送服務</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-500 text-xl font-bold mb-4">
+                        <i class="fa-solid fa-face-smile-beam"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">核心宗旨：紓壓與連結</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">促進大一至大四學長姐與學弟妹傳承交流，打造溫馨、無壓力的護理大家庭氛圍。</p>
+                    <ul class="space-y-2 text-xs text-slate-500 border-t border-slate-200 pt-3">
+                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i>國考經驗交流與臨床心路分享</li>
+                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i>打破班級界線的大團康</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-500 text-xl font-bold mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">護理級安全防護網</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">全場活動皆備有充足急救設備，與隨隊緊急處置小組，玩得最盡興、家人最放心。</p>
+                    <ul class="space-y-2 text-xs text-slate-500 border-t border-slate-200 pt-3">
+                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i>專業隨身急救包與 AED 備用</li>
+                        <li><i class="fa-solid fa-check text-emerald-500 mr-2"></i>投保完整公共意外責任險</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Interactive Venue Voting System -->
+    <section id="voting" class="py-16 md:py-24 bg-gradient-to-b from-sky-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-pink-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-check-double mr-1"></i> Interactive Poll</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 sm:text-4xl">地點由你決定！候選場地即時投票</h2>
+                <p class="text-slate-500 text-sm sm:text-base">投下你最想去的戶外地點！每人可投一票，票數即時統計，投票結果將作為系學會最終決策參考。</p>
+            </div>
+
+            <!-- Interactive Voting Card Grid -->
+            <div id="voting-container" class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Venue 1 Voting Card -->
+                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border border-slate-100 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative mb-4">
+                            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80" alt="陽明山綠野農場" class="w-full h-48 object-cover rounded-2xl">
+                            <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-sky-600 shadow-sm">選項 A</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">陽明山綠野星空農場</h3>
+                        <p class="text-xs text-slate-500 mt-1 mb-4"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>台北市士林區 / 山林大草坪與營火</p>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">擁超大片跑跳草皮，設有專屬烤肉區與星空露營場地。距離市區近，車程短，適合一日遊大團康。</p>
+                    </div>
+
+                    <!-- Vote Progress Bar Component -->
+                    <div class="space-y-3 pt-4 border-t border-slate-100">
+                        <div class="flex justify-between items-center text-xs font-semibold">
+                            <span class="text-slate-600">目前得票率</span>
+                            <span id="v-count-0" class="text-sky-600 font-bold">0 票 (0%)</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div id="v-bar-0" class="bg-gradient-to-r from-sky-400 to-sky-500 h-full w-0 transition-all duration-700"></div>
+                        </div>
+                        <button onclick="castVote(0)" id="v-btn-0" class="w-full py-3 bg-sky-50 hover:bg-sky-500 text-sky-600 hover:text-white border border-sky-200 hover:border-transparent font-bold rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            <span>為此場地投票</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Venue 2 Voting Card -->
+                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border border-slate-100 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative mb-4">
+                            <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=600&q=80" alt="宜蘭松林渡假莊園" class="w-full h-48 object-cover rounded-2xl">
+                            <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-pink-600 shadow-sm">選項 B</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">宜蘭松林綠意渡假莊園</h3>
+                        <p class="text-xs text-slate-500 mt-1 mb-4"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>宜蘭縣礁溪鄉 / 森林溪谷與溫泉</p>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">環境清幽被綠樹環抱，有野溪小溪可戲水踩腳，鄰近溫泉區，完美釋放實習累積的肌肉緊繃感。</p>
+                    </div>
+
+                    <!-- Vote Progress Bar Component -->
+                    <div class="space-y-3 pt-4 border-t border-slate-100">
+                        <div class="flex justify-between items-center text-xs font-semibold">
+                            <span class="text-slate-600">目前得票率</span>
+                            <span id="v-count-1" class="text-pink-600 font-bold">0 票 (0%)</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div id="v-bar-1" class="bg-gradient-to-r from-pink-400 to-pink-500 h-full w-0 transition-all duration-700"></div>
+                        </div>
+                        <button onclick="castVote(1)" id="v-btn-1" class="w-full py-3 bg-pink-50 hover:bg-pink-500 text-pink-600 hover:text-white border border-pink-200 hover:border-transparent font-bold rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            <span>為此場地投票</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Venue 3 Voting Card -->
+                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border border-slate-100 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative mb-4">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="墾丁藍海陽光樂園" class="w-full h-48 object-cover rounded-2xl">
+                            <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-emerald-600 shadow-sm">選項 C</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">墾丁藍海陽光水上園區</h3>
+                        <p class="text-xs text-slate-500 mt-1 mb-4"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>屏東縣恆春鎮 / 沙灘水上派對</p>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">熱情沙灘與海水活動，設有合格救生員與防曬休憩棚，適合熱愛陽光、水上闖關遊戲的熱血夥伴！</p>
+                    </div>
+
+                    <!-- Vote Progress Bar Component -->
+                    <div class="space-y-3 pt-4 border-t border-slate-100">
+                        <div class="flex justify-between items-center text-xs font-semibold">
+                            <span class="text-slate-600">目前得票率</span>
+                            <span id="v-count-2" class="text-emerald-600 font-bold">0 票 (0%)</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div id="v-bar-2" class="bg-gradient-to-r from-emerald-400 to-emerald-500 h-full w-0 transition-all duration-700"></div>
+                        </div>
+                        <button onclick="castVote(2)" id="v-btn-2" class="w-full py-3 bg-emerald-50 hover:bg-emerald-500 text-emerald-600 hover:text-white border border-emerald-200 hover:border-transparent font-bold rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            <span>為此場地投票</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vote Note Banner -->
+            <div class="mt-8 bg-sky-100/60 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm text-sky-800">
+                <div class="flex items-center space-x-2 mb-2 sm:mb-0">
+                    <i class="fa-solid fa-circle-info text-sky-500 text-lg"></i>
+                    <span>系統限制：每位使用者可隨時調整或重新投票，數據將自動儲存於瀏覽器中。</span>
+                </div>
+                <button onclick="resetVote()" class="text-sky-600 underline font-semibold hover:text-sky-800">重設我的投票狀態</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Venue Details -->
+    <section id="venues" class="py-16 md:py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-emerald-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-mountain-sun mr-1"></i> Venue Comparison</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 sm:text-4xl">候選場地詳細評估與設施</h2>
+                <p class="text-slate-500 text-sm sm:text-base">系學會貼心實地勘查，為護理系同學進行交通、設施安全與體驗度的全面剖析！</p>
+            </div>
+
+            <!-- Detailed Venue Tabs/Cards -->
+            <div class="mt-12 space-y-12">
+                <!-- Detail Card 1 -->
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-sm hover:shadow-md transition-shadow">
+                    <div class="lg:col-span-5 space-y-3">
+                        <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80" alt="陽明山綠野農場" class="rounded-2xl w-full h-64 object-cover">
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="bg-sky-100 text-sky-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-fire-burner mr-1"></i>大型烤肉區</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-kit-medical mr-1"></i>設有護理急救備用站</span>
+                            <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-bus mr-1"></i>捷運專車直達 30min</span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <h3 class="text-2xl font-bold text-slate-800">陽明山綠野星空農場</h3>
+                            <span class="text-sm font-bold text-sky-600 bg-sky-50 px-3 py-1 rounded-full">北部首選・極速抵達</span>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            部位於陽明山山麓，空氣清新且擁有遼闊的大草原。場地專門設計給大團體活動，備有遮陽雨棚烤肉區與室內雨備多功能大廳。
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                                <h4 class="text-xs font-bold text-emerald-600 mb-1"><i class="fa-solid fa-circle-check mr-1"></i>優點評估</h4>
+                                <p class="text-xs text-slate-500">交通最便捷、車程短不暈車。若遇雨天有大型風雨活動中心作為完善備案。</p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                                <h4 class="text-xs font-bold text-rose-500 mb-1"><i class="fa-solid fa-circle-xmark mr-1"></i>注意事項</h4>
+                                <p class="text-xs text-slate-500">山區早晚溫差較大，需提醒同學攜帶薄外套防風保暖。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detail Card 2 -->
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-sm hover:shadow-md transition-shadow">
+                    <div class="lg:col-span-5 space-y-3">
+                        <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80" alt="宜蘭松林渡假莊園" class="rounded-2xl w-full h-64 object-cover">
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-hot-tub-person mr-1"></i>紓壓足湯區</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-tree mr-1"></i>芬多精森林步道</span>
+                            <span class="bg-pink-100 text-pink-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-utensils mr-1"></i>宜蘭在地美食烤肉包</span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <h3 class="text-2xl font-bold text-slate-800">宜蘭松林綠意渡假莊園</h3>
+                            <span class="text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">森林芬多精・深度放鬆</span>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            坐落於礁溪優美山谷間，環境充滿自然的森林芬多精。除了大片營火草皮，更附設溫泉泡腳池，能有效紓解護理實習長期站立造成的足部與腰部疲勞。
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                                <h4 class="text-xs font-bold text-emerald-600 mb-1"><i class="fa-solid fa-circle-check mr-1"></i>優點評估</h4>
+                                <p class="text-xs text-slate-500">紓壓感高，可邊烤肉邊泡腳放鬆，景點拍照極具美感與特色。</p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                                <h4 class="text-xs font-bold text-rose-500 mb-1"><i class="fa-solid fa-circle-xmark mr-1"></i>注意事項</h4>
+                                <p class="text-xs text-slate-500">經過雪山隧道可能遇小幅塞車，車程約需 1.5 小時。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detail Card 3 -->
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-sm hover:shadow-md transition-shadow">
+                    <div class="lg:col-span-5 space-y-3">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="墾丁藍海樂園" class="rounded-2xl w-full h-64 object-cover">
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-umbrella-beach mr-1"></i>專屬私人沙灘</span>
+                            <span class="bg-sky-100 text-sky-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-water mr-1"></i>水上闖關遊戲區</span>
+                            <span class="bg-rose-100 text-rose-700 text-xs font-semibold px-2.5 py-1 rounded-md"><i class="fa-solid fa-life-ring mr-1"></i>專業合格救生團隊</span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <h3 class="text-2xl font-bold text-slate-800">墾丁藍海陽光水上園區</h3>
+                            <span class="text-sm font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">陽光大海・熱血狂歡</span>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            充滿陽光熱情的墾丁海岸水上園區！包場式沙灘可進行大型戶外水上趣味競賽，傍晚於海風中享受沙灘 BBQ 派對與音樂祭氣氛。
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                                <h4 class="text-xs font-bold text-emerald-600 mb-1"><i class="fa-solid fa-circle-check mr-1"></i>優點評估</h4>
+                                <p class="text-xs text-slate-500">活動氣氛最嗨！熱血水上闖關與沙灘排球，釋放積壓已久的壓力。</p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                                <h4 class="text-xs font-bold text-rose-500 mb-1"><i class="fa-solid fa-circle-xmark mr-1"></i>注意事項</h4>
+                                <p class="text-xs text-slate-500">拉車時間較長（適合兩天一夜規劃），需特別加強防曬與防溺安全教育。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Fun Nursing Activities & Schedule Timeline -->
+    <section id="activities" class="py-16 md:py-24 bg-gradient-to-b from-sky-50/50 via-white to-pink-50/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-amber-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-gamepad mr-1"></i> Nursing Fun Games</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 sm:text-4xl">護理系專屬趣味闖關與行程</h2>
+                <p class="text-slate-500 text-sm sm:text-base">結合護理專業知識與搞笑戶外遊戲，保證歡笑不斷，同時培養組員無懈可擊的默契！</p>
+            </div>
+
+            <!-- Special Games Highlight Grid -->
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Game 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all space-y-3 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-500 rounded-xl flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bandage"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">包紮速度大挑戰</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        隊員需在蒙眼狀態下，依指揮為「傷患」同學完成指定的八字包紮或三角巾固定，比拼速度與默契美觀！
+                    </p>
+                </div>
+
+                <!-- Game 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all space-y-3 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-sky-100 text-sky-500 rounded-xl flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-kit-medical"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">急救包大搜查</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        大型草地定向越野，地圖藏有各種急救用品卡片，最快集齊「標準急救清單」並正確說出用途者勝出。
+                    </p>
+                </div>
+
+                <!-- Game 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all space-y-3 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-500 rounded-xl flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-vial-circle-check"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">滴劑接力趴 (gtt/min)</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        考驗護理人的精準度！隊員需用長管舀水接力，最終水量需精準符合計算出來的滴數指示，多一滴少一滴都不行！
+                    </p>
+                </div>
+
+                <!-- Game 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all space-y-3 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-500 rounded-xl flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-capsules"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">解毒劑大作戰</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        終極陣營撕名牌遊戲！尋找散落場地的「對解劑 (Antidote) 道具」，解除敵方角色的特殊負面狀態！
+                    </p>
+                </div>
+            </div>
+
+            <!-- Day Itinerary Timeline -->
+            <div class="mt-16 bg-white p-6 sm:p-10 rounded-3xl border border-slate-100 shadow-md">
+                <h3 class="text-xl font-bold text-slate-800 text-center mb-8"><i class="fa-regular fa-clock text-sky-500 mr-2"></i>當日預定行程流程表 (Timeline)</h3>
+
+                <div class="relative border-l-2 border-sky-200 ml-4 sm:ml-32 space-y-8">
+                    <!-- Item 1 -->
+                    <div class="relative pl-6 sm:pl-8">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 bg-sky-500 rounded-full border-4 border-white"></div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-md inline-block mb-1 sm:mb-0">08:30 - 09:00</div>
+                        <h4 class="text-base font-bold text-slate-800">集合發車・血氧充能預備</h4>
+                        <p class="text-xs text-slate-500 mt-1">校門口集合點名、發放精美「護理戶外包」（含礦泉水、防蚊貼片與護理貼紙）。</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative pl-6 sm:pl-8">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 bg-pink-400 rounded-full border-4 border-white"></div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-pink-600 bg-pink-50 px-2.5 py-1 rounded-md inline-block mb-1 sm:mb-0">09:30 - 11:30</div>
+                        <h4 class="text-base font-bold text-slate-800">破冰大團康 & 護理特色闖關競賽</h4>
+                        <p class="text-xs text-slate-500 mt-1">分組開跑！進行「急救包搜查」與「包紮速度大挑戰」，累積分組積分爭奪大獎。</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative pl-6 sm:pl-8">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 bg-amber-400 rounded-full border-4 border-white"></div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-md inline-block mb-1 sm:mb-0">12:00 - 14:00</div>
+                        <h4 class="text-base font-bold text-slate-800">熱血 BBQ 烤肉派對 & 充能午餐</h4>
+                        <p class="text-xs text-slate-500 mt-1">組隊分工烤肉！提供素食與專屬烤肉海陸套餐，學長姐實習心得傳承交流時間。</p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="relative pl-6 sm:pl-8">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 bg-emerald-400 rounded-full border-4 border-white"></div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md inline-block mb-1 sm:mb-0">14:30 - 16:30</div>
+                        <h4 class="text-base font-bold text-slate-800">全區解毒劑撕名牌大戰 & 景點自由拍照</h4>
+                        <p class="text-xs text-slate-500 mt-1">揮灑汗水的陣營對抗賽，並於美景打卡點拍攝各班團體紀念照。</p>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="relative pl-6 sm:pl-8">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white"></div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md inline-block mb-1 sm:mb-0">17:00 - 18:00</div>
+                        <h4 class="text-base font-bold text-slate-800">頒獎典禮 & 賦歸返校</h4>
+                        <p class="text-xs text-slate-500 mt-1">頒發總冠軍禮券與護理戶外紀念章，滿載笑容平安賦歸！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Online Registration & Survey Form -->
+    <section id="register" class="py-16 md:py-24 bg-white border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-3 mb-10">
+                <span class="text-indigo-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-id-card mr-1"></i> Registration</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 sm:text-4xl">線上報名與飲食需求調查</h2>
+                <p class="text-slate-500 text-sm sm:text-base">請完整填寫以下個人資料，方便系學會為您辦理保險與準備專屬餐點。</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm">
+                <form id="regForm" onsubmit="handleRegistration(event)" class="space-y-6">
+                    <!-- Personal Info Row -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Name -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2" for="student-name">
+                                姓名 <span class="text-rose-500">*</span>
+                            </label>
+                            <input type="text" id="student-name" required placeholder="例如：王小美" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white text-sm transition-all">
+                        </div>
+
+                        <!-- Student ID -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2" for="student-id">
+                                學號 <span class="text-rose-500">*</span>
+                            </label>
+                            <input type="text" id="student-id" required placeholder="例如：N1120101" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white text-sm transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Grade & Class -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2" for="student-grade">
+                                年級班別 <span class="text-rose-500">*</span>
+                            </label>
+                            <select id="student-grade" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white text-sm transition-all">
+                                <option value="">請選擇年級班別</option>
+                                <option value="護理系一甲">護理系一甲</option>
+                                <option value="護理系一乙">護理系一乙</option>
+                                <option value="護理系二甲">護理系二甲</option>
+                                <option value="護理系二乙">護理系二乙</option>
+                                <option value="護理系三甲">護理系三甲</option>
+                                <option value="護理系三乙">護理系三乙</option>
+                                <option value="護理系四甲">護理系四甲</option>
+                                <option value="護理系四乙">護理系四乙</option>
+                                <option value="護研所">護理研究所</option>
+                            </select>
+                        </div>
+
+                        <!-- Mobile Phone -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2" for="student-phone">
+                                聯絡電話 <span class="text-rose-500">*</span>
+                            </label>
+                            <input type="tel" id="student-phone" required placeholder="例如：0912345678" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white text-sm transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Dietary Preferences -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                            烤肉餐盒飲食習慣 <span class="text-rose-500">*</span>
+                        </label>
+                        <div class="flex flex-wrap gap-4 pt-1">
+                            <label class="flex items-center space-x-2 cursor-pointer bg-white px-4 py-2.5 rounded-xl border border-slate-200 hover:border-sky-300">
+                                <input type="radio" name="diet" value="葷食" checked class="text-sky-500 focus:ring-sky-400">
+                                <span class="text-sm font-medium text-slate-700"><i class="fa-solid fa-drumstick-bite text-amber-500 mr-1"></i>葷食</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer bg-white px-4 py-2.5 rounded-xl border border-slate-200 hover:border-sky-300">
+                                <input type="radio" name="diet" value="蛋奶素" class="text-sky-500 focus:ring-sky-400">
+                                <span class="text-sm font-medium text-slate-700"><i class="fa-solid fa-egg text-amber-400 mr-1"></i>蛋奶素</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer bg-white px-4 py-2.5 rounded-xl border border-slate-200 hover:border-sky-300">
+                                <input type="radio" name="diet" value="全素" class="text-sky-500 focus:ring-sky-400">
+                                <span class="text-sm font-medium text-slate-700"><i class="fa-solid fa-leaf text-emerald-500 mr-1"></i>全素</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Special Allergies -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2" for="allergies">
+                            特殊過敏源或身體狀況告知 (Allergies / Special Notes)
+                        </label>
+                        <input type="text" id="allergies" placeholder="例如：對海鮮過敏、對蜂毒過敏、或暈車...（無則填無）" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white text-sm transition-all">
+                    </div>
+
+                    <!-- Nursing Special Note / Emergency Contact -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2" for="emergency-contact">
+                            緊急聯絡人姓名與電話 <span class="text-rose-500">*</span>
+                        </label>
+                        <input type="text" id="emergency-contact" required placeholder="例如：王大明（父）0987654321" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white text-sm transition-all">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-4">
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-sky-400 via-sky-500 to-indigo-500 text-white font-bold rounded-2xl shadow-lg shadow-sky-200 hover:shadow-sky-300 hover:scale-[1.01] transition-all flex items-center justify-center space-x-2 text-base">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>送出報名資料</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Q&A & Safety Tips (Accordion) -->
+    <section id="faq" class="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-sky-100/40 border-t border-slate-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+                <span class="text-rose-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-shield-heart mr-1"></i> Safety & FAQ</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 sm:text-4xl">常見問題與護理安全小叮嚀</h2>
+                <p class="text-slate-500 text-sm sm:text-base">護理人的貼心叮嚀！出門在外，安全第一，收錄活動常見問答與建議隨身裝備。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Nursing Safety Tips Column -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3 text-rose-500 font-bold text-lg border-b border-slate-100 pb-3">
+                        <i class="fa-solid fa-kit-medical text-2xl"></i>
+                        <h3>護理貼心裝備清單</h3>
+                    </div>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <span><strong>高係數防曬與防蚊液：</strong>戶外活動草地蚊蟲較多，建議隨身攜帶。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <span><strong>個人個人習慣藥品：</strong>如暈車藥（建議發車前30分鐘服用）、腸胃藥或抗過敏藥。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <span><strong>替換衣物與毛巾：</strong>趣味遊戲可能涉及水上或汗水，建議準備一套備用衣物。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5"></i>
+                            <span><strong>水分補充保溫瓶：</strong>適時補充水分，預防中暑與熱衰竭。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Accordion FAQ Column -->
+                <div class="lg:col-span-7 space-y-3">
+                    <!-- FAQ Item 1 -->
+                    <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                            <span>Q1: 如果剛好遇到臨床實習班別衝突該怎麼辦？</span>
+                            <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-1" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-50 pt-3 leading-relaxed">
+                            系學會在安排日期時已協調避開大部分大三大四的集中實習期。若您當天剛好逢實習調班困難，可以先填寫報名並備註，系學會將協助開立活動證明或退費處理。
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                            <span>Q2: 非護理系的跨系朋友或家屬可以報名參加嗎？</span>
+                            <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-2" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-50 pt-3 leading-relaxed">
+                            歡迎！每位護理系同學最多可攜帶 1 位親友同樂（需於報名表分開填寫並備註攜眷），保險與餐費標準與本系學生相同。
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                            <span>Q3: 天候不佳（如遇大雨）時的備案是什麼？</span>
+                            <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-3" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-50 pt-3 leading-relaxed">
+                            候選場地均具備大型室內風雨活動中心或風雨棚。若氣象預報雨勢過大，活動將無縫切換至室內桌遊闖關與風雨棚烤肉，熱情不減！
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(4)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                            <span>Q4: 報名費用包含哪些項目？</span>
+                            <i id="faq-icon-4" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-4" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-50 pt-3 leading-relaxed">
+                            報名費包含：來回遊覽車接送、全程高額旅遊平安險、烤肉午餐食材與飲料、闖關道具與豐富獎品，系學會亦有額外經費補貼！
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white py-12 border-t border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-400 to-pink-400 flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-heart-pulse text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-extrabold tracking-wide text-white block">Nursing Outdoor Event</span>
+                        <span class="text-xs text-slate-400">護理系學會 關心您的身心健康</span>
+                    </div>
+                </div>
+
+                <div class="text-xs text-slate-400 text-center md:text-right space-y-1">
+                    <p>© 2026 護理學系系學會 版權所有．Nursing Department Student Association</p>
+                    <p>聯絡信箱：nursing_sa@university.edu.tw | 聯絡電話：(02) 2826-7000 #1234</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Registration Success Modal Dialog -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl text-center space-y-5 transform scale-95 transition-transform duration-300">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center text-3xl mx-auto animate-bounce">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800">報名成功！</h3>
+            <p id="modal-desc" class="text-sm text-slate-600 leading-relaxed">
+                感謝報名！我們已收到您的資料，確認信件與活動通知將於近期發送至您的聯絡電話與電子信箱。
+            </p>
+            <div class="bg-sky-50 p-3.5 rounded-xl text-xs text-sky-700 font-medium">
+                <i class="fa-solid fa-heart mr-1 text-pink-400"></i>記得提醒同班同學一起來投票與報名喔！
+            </div>
+            <button onclick="closeModal()" class="w-full py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl transition-all shadow-md">
+                好的，太棒了！
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Default vote numbers simulation
+        let votes = [112, 86, 50]; // Venue A, Venue B, Venue C initial counts
+        const storageKey = 'nursing_venue_votes_v2';
+        const userVotedKey = 'nursing_user_voted_choice';
+
+        // Initialize state on window load
+        window.onload = function() {
+            loadVotes();
+            updateVoteUI();
+
+            // Mobile menu toggle listeners
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        };
+
+        // Load persisted votes from localStorage
+        function loadVotes() {
+            const savedVotes = localStorage.getItem(storageKey);
+            if (savedVotes) {
+                try {
+                    votes = JSON.parse(savedVotes);
+                } catch(e) {
+                    console.error('Error parsing stored votes', e);
+                }
+            }
+        }
+
+        // Save votes to localStorage
+        function saveVotes() {
+            localStorage.setItem(storageKey, JSON.stringify(votes));
+        }
+
+        // Render current vote statistics and progress bars
+        function updateVoteUI() {
+            const totalVotes = votes.reduce((a, b) => a + b, 0);
+            
+            // Update total in Hero banner
+            document.getElementById('hero-vote-count').innerText = totalVotes;
+
+            const userChoice = localStorage.getItem(userVotedKey);
+
+            votes.forEach((count, idx) => {
+                const percent = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
+                
+                // Update text counter
+                const countElem = document.getElementById(`v-count-${idx}`);
+                if (countElem) {
+                    countElem.innerText = `${count} 票 (${percent}%)`;
+                }
+
+                // Update width bar
+                const barElem = document.getElementById(`v-bar-${idx}`);
+                if (barElem) {
+                    barElem.style.width = `${percent}%`;
+                }
+
+                // Update Button styling if user voted for this item
+                const btnElem = document.getElementById(`v-btn-${idx}`);
+                if (btnElem) {
+                    if (userChoice !== null && parseInt(userChoice) === idx) {
+                        btnElem.classList.add('bg-slate-800', 'text-white', 'border-transparent');
+                        btnElem.classList.remove('bg-sky-50', 'bg-pink-50', 'bg-emerald-50');
+                        btnElem.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i><span>您已投票此場地</span>`;
+                    } else {
+                        btnElem.classList.remove('bg-slate-800', 'text-white');
+                        btnElem.innerHTML = `<i class="fa-solid fa-thumbs-up"></i><span>為此場地投票</span>`;
+                    }
+                }
+            });
+        }
+
+        // Cast or change vote logic
+        function castVote(venueIndex) {
+            const previousVote = localStorage.getItem(userVotedKey);
+
+            if (previousVote !== null) {
+                const prevIdx = parseInt(previousVote);
+                if (prevIdx === venueIndex) {
+                    // Clicking same button again
+                    alert('您已經為此場地投過票囉！');
+                    return;
+                } else {
+                    // Changing vote option
+                    votes[prevIdx] = Math.max(0, votes[prevIdx] - 1);
+                }
+            }
+
+            // Apply new vote
+            votes[venueIndex]++;
+            localStorage.setItem(userVotedKey, venueIndex);
+            saveVotes();
+            updateVoteUI();
+        }
+
+        // Reset vote option for testing
+        function resetVote() {
+            const previousVote = localStorage.getItem(userVotedKey);
+            if (previousVote !== null) {
+                const prevIdx = parseInt(previousVote);
+                votes[prevIdx] = Math.max(0, votes[prevIdx] - 1);
+                localStorage.removeItem(userVotedKey);
+                saveVotes();
+                updateVoteUI();
+                alert('已重設您的投票狀態！您可以重新選擇場地。');
+            } else {
+                alert('您目前尚未投票喔！');
+            }
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(index) {
+            const ansElem = document.getElementById(`faq-ans-${index}`);
+            const iconElem = document.getElementById(`faq-icon-${index}`);
+            
+            if (ansElem.classList.contains('hidden')) {
+                ansElem.classList.remove('hidden');
+                iconElem.classList.add('rotate-180');
+            } else {
+                ansElem.classList.add('hidden');
+                iconElem.classList.remove('rotate-180');
+            }
+        }
+
+        // Handle Registration Form Submit
+        function handleRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('student-name').value;
+            const grade = document.getElementById('student-grade').value;
+
+            document.getElementById('modal-desc').innerText = `親愛的 ${name} 同學（${grade}），我們已收到您的報名資料！系學會將盡快向您核對活動細節。`;
+
+            // Open Modal
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+                modal.querySelector('div').classList.add('scale-100');
+            }, 10);
+
+            // Reset Form
+            document.getElementById('regForm').reset();
+        }
+
+        // Close Modal Dialog
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
